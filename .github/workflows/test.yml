@@ -11,13 +11,13 @@ jobs:
         run: brew install bash
 
       - name: Test (shim env)
-        shell: $HOMEBREW_PREFIX/bin/bash
+        shell: /usr/local/bin/bash
         run: |
           echo "DYLD_FALLBACK_LIBRARY_PATH=/tmp" >> $GITHUB_ENV
       
 
       - name: Test
-        shell: $HOMEBREW_PREFIX/bin/bash
+        shell: /usr/local/bin/bash
         run: |
           echo ${PATHX:-is_empty}
           echo ${DYLD_FALLBACK_LIBRARY_PATH:-is_empty}
