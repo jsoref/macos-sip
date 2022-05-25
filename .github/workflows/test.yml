@@ -7,16 +7,22 @@ jobs:
   test_job:
     runs-on: macos-latest
     steps:
+      - name: brew bash
+        run: brew install bash
+
       - name: Test
+        shell: /opt/homebrew/bin/bash
         run: |
           echo "PATHX=$(xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib/" >> $GITHUB_ENV
           
       - name: Test
+        shell: /opt/homebrew/bin/bash
         run: |
           echo "DYLD_FALLBACK_LIBRARY_PATH=$PATHX" >> $GITHUB_ENV
       
 
       - name: Test
+        shell: /opt/homebrew/bin/bash
         run: |
           echo ${PATHX:-is_empty}
           echo ${DYLD_FALLBACK_LIBRARY_PATH:-is_empty}
