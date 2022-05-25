@@ -1,0 +1,22 @@
+name: Test
+
+on:
+  workflow_dispatch
+
+jobs:
+  test_job:
+    runs-on: macos-latest
+    steps:
+      - name: Test
+        run: |
+          echo "PATHX=$(xcode-select --print-path)/Toolchains/XcodeDefault.xctoolchain/usr/lib/" >> $GITHUB_ENV
+          
+      - name: Test
+        run: |
+          echo "DYLD_FALLBACK_LIBRARY_PATH=$PATHX" >> $GITHUB_ENV
+      
+
+      - name: Test
+        run: |
+          echo ${PATHX:-is_empty}
+          echo ${DYLD_FALLBACK_LIBRARY_PATH:-is_empty}
